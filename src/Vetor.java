@@ -21,6 +21,10 @@ public class Vetor {
 		this.dado = dado;
 	}
 
+	public void insereInicio(String dado) {
+		set(0, dado);
+	}
+
 	public void insereFinal(String dado) {
 		verificaEspaco();
 		for (int i = 0; i < vetor.length; i++) {
@@ -31,10 +35,6 @@ public class Vetor {
 		}
 		totalElementos++;
 		mostraVetor();
-	}
-
-	public void insereIndice(String dado, int indice) {
-
 	}
 
 	public void mostraVetor() {
@@ -61,21 +61,11 @@ public class Vetor {
 		return posicao >= 0 && posicao < this.totalElementos;
 	}
 
-	public void get(int posicao) {
+	public void get(int posicao) throws Exception {
 		if (!this.verificaIndice(posicao)) {
-			throw new IllegalArgumentException("Posição inválida");
+			throw new ArrayIndexOutOfBoundsException("Posição inválida!");
 		}
 		System.out.println(this.vetor[posicao]);
-	}
-
-	public void insereInicio(String dado) {
-		verificaEspaco();
-		for(int i=vetor.length-1; i > 0; i--){
-			vetor[i] = vetor[i-1];
-		}
-		vetor[0] = dado;		
-		mostraVetor();
-		totalElementos++;
 	}
 
 	public void set(int pos, String dado) {
@@ -86,6 +76,25 @@ public class Vetor {
 		vetor[pos] = dado;		
 		mostraVetor();
 		totalElementos++;
+	}
+
+	public void inserePosicao() {
+		int pos = Teste.readInteger("Digite a posição: ");
+		String dado = Teste.readString("Digite o valor: ");
+		set(pos, dado);
+	}
+
+	public void remove(int pos) {
+		String[] vetorAux = new String[vetor.length -1];
+		int index = 0;
+		for(int i = 0; i < vetor.length; i++){
+			if(i != pos){
+				vetorAux[index] = vetor[i];
+				index++;
+			}
+		}
+		vetor = vetorAux;
+		mostraVetor();
 	}	
 
 	@Override
@@ -111,5 +120,4 @@ public class Vetor {
 	//
 	//		return builder.toString();
 	//	}
-
 }

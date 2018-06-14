@@ -3,36 +3,20 @@ import java.util.Scanner;
 public class Teste {
 	Vetor dadosVetor = new Vetor();
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		Vetor vetor = new Vetor();
 		while (true) {
 			switch (readString(menu()).charAt(0)) {
-			case '1':
-				vetor.insereFinal(readString("Digite o valor: "));
-				break;
-			case '2':
-				vetor.insereInicio(readString("Digite o valor: "));								
-				break;
-			case '3':
-				vetor.get(readInteger("Digite a posição: "));								
-				break;
-			case '4':
-				vetor.set(readInteger("Digite a posição: "),readString("Digite o valor: "));								
-				break;
-			case '7':
-				System.exit(0);
-				break;
+			case '1': vetor.insereFinal(readString("Digite o valor: ")); break;
+			case '2': vetor.insereInicio(readString("Digite o valor: ")); break;
+			case '3': vetor.get(readInteger("Digite a posição: ")); break;
+			case '4': vetor.inserePosicao(); break;
+			case '5': vetor.remove(0); break;
+			case '6': vetor.remove(readInteger("Digite a posição: ")); break;
+			case '7': System.exit(0); break;
 			}
 		}
 	}
-//	inserefinal(valor)
-//	insereInicio(valor)
-//	insere(indice, valor)
-//	get(indice) -> valor
-//	set(indice, valor)
-//	removeFinal()
-//	removeInicio()
-//	remove(indice)
 
 	private static String menu() {
 		String menu = "";
